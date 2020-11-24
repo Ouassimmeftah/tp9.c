@@ -16,7 +16,7 @@
 int copie(const char *fichier1,const char *fichier2){
  
     int f1 = open(fichier1, O_RDONLY);
-    int f2 = open(fichier2, O_WRONLY | O_CREAT | O_EXCL, 666);
+    int f2 = open(fichier2, O_WRONLY | O_CREAT | O_EXCL, 0666);
 
     while (1){
         // init buffer
@@ -28,7 +28,7 @@ int copie(const char *fichier1,const char *fichier2){
 
         //  partie ecriture
         int pos = 0;
-        while (rcnt =! 0)
+        while (rcnt != 0)
         {
             // buffer + pos : buffer correspond a un pointeur et pour avoir
             // l'endroit actuel ou on en est du buffer
