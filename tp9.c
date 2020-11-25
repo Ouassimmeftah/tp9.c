@@ -17,6 +17,12 @@ int copie(const char *fichier1,const char *fichier2){
  
     int f1 = open(fichier1, O_RDONLY);
     int f2 = open(fichier2, O_WRONLY | O_CREAT | O_EXCL, 0666);
+    struct stat s  ;
+    fstat(f1,&s);
+    s.st_mode;
+
+    if(f1 == NULL)
+        perror(fichier1);    
 
     while (1){
         // init buffer
@@ -47,5 +53,8 @@ int copie(const char *fichier1,const char *fichier2){
 
 
 int main(){
+    printf("Ce programme permet de copier un fichier.\n");
+    sleep(1);
     copie("test-emets.txt","test.txt");
+    printf("Copie effectuée !\n");
 }
