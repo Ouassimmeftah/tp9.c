@@ -57,7 +57,9 @@ int copierepertoire(const char *dossier1,const char *dossier2){
 
     if(d1 == NULL)
         perror(dossier1); 
-    3   
+
+    struct dirent *readdir(DIR *d1);
+    int readir = readdir(*d1,dirent,);
 
 
 }
