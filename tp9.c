@@ -3,26 +3,26 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pthread.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <dirent.h>
 
 
 int copie(const char *fichier1,const char *fichier2){
  
     int f1 = open(fichier1, O_RDONLY);
     int f2 = open(fichier2, O_WRONLY | O_CREAT | O_EXCL, 0666);
-    struct stat s  ;
-    fstat(f1,&s);
-    s.st_mode;
 
     if(f1 == NULL)
         perror(fichier1);    
+
+    struct stat stat_buffer;
+    int  status;
+
+    status = stat(fichier1, &stat_buffer);
+
+    int permission = stat_buffer.st_mode;
 
     while (1){
         // init buffer
@@ -46,15 +46,33 @@ int copie(const char *fichier1,const char *fichier2){
 
     }
 
+    fchmod(f2,permission);
     close(f1);
     close(f2);
     return 0;
 }
 
+int copierepertoire(const char *dossier1,const char *dossier2){
+    int d1 = opendir(dossier1);
+
+    if(d1 == NULL)
+        perror(dossier1); 
+    3   
+
+
+}
+
 
 int main(){
+    int x = 0; 
     printf("Ce programme permet de copier un fichier.\n");
-    sleep(1);
     copie("test-emets.txt","test.txt");
+    while (x<10)
+    {
+        printf(".");
+        sleep(0.800);
+        x++;
+    }
+    printf("\n");
     printf("Copie effectuée !\n");
 }
