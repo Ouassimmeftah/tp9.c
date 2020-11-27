@@ -62,9 +62,12 @@ int copieRepertoire(const char *dossier1 ) {//,const char *dossier2){
 
     struct dirent * structd ;
     // boucle qui liste le contenu du dossier
-    while(structd = readdir(d1) != NULL){
-            printf("%s\n", structd->d_name
-            copie()
+    while((structd = readdir(d1)) != NULL){
+        char *s = structd->d_name;
+            if (s != "." || s != ".."){
+                    printf("%s\n", structd -> d_name);
+            }
+                
     }
 
     closedir(d1);
@@ -73,9 +76,11 @@ int copieRepertoire(const char *dossier1 ) {//,const char *dossier2){
 
 
 int main(){
-    int x = 0; 
-    printf("Ce programme permet de copier un fichier.\n");
-    copie("test-emets.txt","test.txt");
+    //int x = 0; 
+    //printf("Ce programme permet de copier un fichier.\n");
+    //copie("test-emets.txt","test.txt");
+    copieRepertoire("testrepertoire");
+    /**
     while (x<10)
     {
         printf(".");
@@ -84,4 +89,5 @@ int main(){
     }
     printf("\n");
     printf("Copie effectuée !\n");
+    */
 }
