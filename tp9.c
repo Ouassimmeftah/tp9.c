@@ -52,19 +52,21 @@ int copie(const char *fichier1,const char *fichier2){
     return 0;
 }
 
-int copierepertoire(const char *dossier1,const char *dossier2){
+int copieRepertoire(const char *dossier1 ) {//,const char *dossier2){
     DIR * d1 = opendir(dossier1);
-    int taille = 0; 
-    int tableauSousFichiers[taille];
+    
 
-    if(d1 == NULL)
+    if(d1 == NULL){
         perror(dossier1); 
+    }
 
     struct dirent * structd ;
     // boucle qui liste le contenu du dossier
     while(structd = readdir(d1) != NULL){
-            printf("%s\n", structd->d_name); 
+            printf("%s\n", structd->d_name
+            copie()
     }
+
     closedir(d1);
     return 0;
 }
