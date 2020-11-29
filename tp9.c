@@ -65,7 +65,7 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
         
         char *source_filename = structd->d_name; // récupération du nom du fichier source courant
 
-            if (strcmp(source_filename, '.') && strcmp(source_filename != '.') ) {
+            if (strcmp(source_filename, ".") ==0 && strcmp(source_filename,"..") ==0 ) {
 
                     printf("%s\n",source_filename);  
 
@@ -85,6 +85,7 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
                     free(target_path);
 
             }
+            else perror("fichier parent");  // debuggage
                 
     }
 
