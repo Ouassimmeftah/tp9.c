@@ -54,7 +54,6 @@ int copie(const char *fichier1,const char *fichier2){
 
 int copieRepertoire(const char *dossier1,const char *dossier2){
     DIR * d1 = opendir(dossier1);
-    int compt = 0; 
 
     if(d1 == NULL){
         perror(dossier1); 
@@ -68,9 +67,10 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
 
             if ((source_filename != ".") && (source_filename != "..")){
 
-                    printf("%s\n",source_filename);   
-                    char *source_path = malloc(strlen(d1) + 1 + strlen(source_filename)+1);
-                    strcpy(source_path,d1);
+                    printf("%s\n",source_filename);  
+
+                    char *source_path = malloc(strlen(dossier1) + 1 + strlen(source_filename)+1);
+                    strcpy(source_path,dossier1);
                     strcat(source_path,"/");
                     strcat(source_path,source_filename);
 
@@ -97,7 +97,7 @@ int main(){
     //int x = 0; 
     //printf("Ce programme permet de copier un fichier.\n");
     //copie("test-emets.txt","test.txt");
-    copieRepertoire("testrepertoire");
+    copieRepertoire("testrepertoire","testrepertoirerecois");
     /**
     while (x<10)
     {
