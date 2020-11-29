@@ -53,12 +53,15 @@ int copie(const char *fichier1,const char *fichier2){
 }
 
 int copieRepertoire(const char *dossier1,const char *dossier2){
+
     // On prépare l'ouverture du dossier source
     DIR * d1 = opendir(dossier1);
+
     // levée d'erreur si avérée
     if(d1 == NULL){
         perror(dossier1); 
     }
+
     // gestion des permissions du dossier source 
     struct stat stat_buffer_folder_source;
     int status_folder_source = stat(dossier1, &stat_buffer_folder_source);
@@ -69,7 +72,7 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
     int target_folder_creation = mkdir(dossier2, permission_source_folder);
 
     // le résultat stocke un code d'erreur, utile pour savoir si le dossier existait déjà
-    printf("code erreur de création du dossier cible %d", target_folder_creation);
+    printf("code erreur de création du dossier cible %d \n", target_folder_creation);
     
     // On prépare une structure servant de buffer à l'analyse du dossier source
     struct dirent * structd ;
@@ -82,7 +85,7 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
     
             if (!(strcmp(source_filename, ".") ==0 && strcmp(source_filename,"..") ==0 )) {
 
-                    printf("%s\n",source_filename);  
+                    printf("Traitement de %s\n",source_filename);  
 
                     // allocation de la mémoire pour le chemin source
                     char *source_path = malloc(strlen(dossier1) + 1 + strlen(source_filename)+1);
@@ -95,7 +98,7 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
                     strcpy(target_path,dossier2);
                     strcat(target_path,"/");
                     strcat(target_path,source_filename);
-                    
+
                     // Maintenant que l'on a le chemin du fichier source et que l'on a définit un chemin pour le fichier cible
                     // On peut faire la copie
                     copie(source_path,target_path);
