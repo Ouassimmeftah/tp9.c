@@ -68,12 +68,12 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
             if (strcmp(source_filename, ".") ==0 && strcmp(source_filename,"..") ==0 ) {
 
                     printf("%s\n",source_filename);  
-
+                    // allocation de la mémoire pour le chemin source
                     char *source_path = malloc(strlen(dossier1) + 1 + strlen(source_filename)+1);
                     strcpy(source_path,dossier1);
                     strcat(source_path,"/");
                     strcat(source_path,source_filename);
-
+                    // allocation de la mémoire pour le chemin destinataire
                     char *target_path = malloc(strlen(dossier2) +1 + strlen(source_filename) +1);
                     strcpy(target_path,source_filename);
                     strcat(target_path,"/");
