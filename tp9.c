@@ -52,9 +52,9 @@ int copie(const char *fichier1,const char *fichier2){
     return 0;
 }
 
-int copieRepertoire(const char *dossier1 ) {//,const char *dossier2){
+int copieRepertoire(const char *dossier1 , const char *dossier2){
     DIR * d1 = opendir(dossier1);
-    
+    int compt = 0; 
 
     if(d1 == NULL){
         perror(dossier1); 
@@ -65,7 +65,12 @@ int copieRepertoire(const char *dossier1 ) {//,const char *dossier2){
     while((structd = readdir(d1)) != NULL){
         char *s = structd->d_name;
             if (s != "." || s != ".."){
-                    printf("%s\n", structd -> d_name);
+                    printf("%s\n",s);   
+                    while (compt<sizeof(s)){
+                        copie(s[compt],"testons.txt");
+                        compt++ ; 
+                    }
+                    
             }
                 
     }
@@ -79,7 +84,7 @@ int main(){
     //int x = 0; 
     //printf("Ce programme permet de copier un fichier.\n");
     //copie("test-emets.txt","test.txt");
-    copieRepertoire("testrepertoire");
+    copieRepertoire("testrepertoire","testCopieRepertoire");
     /**
     while (x<10)
     {
