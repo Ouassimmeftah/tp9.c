@@ -52,7 +52,7 @@ int copie(const char *fichier1,const char *fichier2){
     return 0;
 }
 
-int copieRepertoire(const char *dossier1 , const char *dossier2){
+int copieRepertoire(const char *dossier1,const char *dossier2){
     DIR * d1 = opendir(dossier1);
     int compt = 0; 
 
@@ -63,14 +63,27 @@ int copieRepertoire(const char *dossier1 , const char *dossier2){
     struct dirent * structd ;
     // boucle qui liste le contenu du dossier
     while((structd = readdir(d1)) != NULL){
-        char *s = structd->d_name;
-            if (s != "." || s != ".."){
-                    printf("%s\n",s);   
-                    while (compt<sizeof(s)){
-                        copie(s[compt],"testons.txt");
-                        compt++ ; 
-                    }
-                    
+        
+        char *source_filename = structd->d_name; // récupération du nom du fichier source courant
+
+            if ((source_filename != ".") && (source_filename != "..")){
+
+                    printf("%s\n",source_filename);   
+                    char *source_path = malloc(strlen(d1) + 1 + strlen(source_filename)+1);
+                    strcpy(source_path,d1);
+                    strcat(source_path,"/");
+                    strcat(source_path,source_filename);
+
+                    char *target_path = malloc(strlen(dossier2) +1 + strlen(source_filename) +1);
+                    strcpy(target_path,source_filename);
+                    strcat(target_path,"/");
+                    strcat(target_path,source_filename);
+
+                    copie(source_path,target_path);
+
+                    free(source_path);
+                    free(target_path);
+
             }
                 
     }
@@ -84,7 +97,7 @@ int main(){
     //int x = 0; 
     //printf("Ce programme permet de copier un fichier.\n");
     //copie("test-emets.txt","test.txt");
-    copieRepertoire("testrepertoire","testCopieRepertoire");
+    copieRepertoire("testrepertoire");
     /**
     while (x<10)
     {
