@@ -103,9 +103,6 @@ int copieRepertoire(const char *dossier1,const char *dossier2){
                     // On peut faire la copie
                     copie(source_path,target_path);
 
-                    // finalement on libère l'espace demandé pour les source path et target path pour éviter les fuites de mémoire
-                    free(source_path);
-                    free(target_path);
 
             }
             else perror("fichier parent");  // debuggage condition
