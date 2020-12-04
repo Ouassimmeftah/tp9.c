@@ -1,3 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pthread.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <dirent.h>
+
 
 int copieRecursive( const char * fichierOuDossierOnSaitPas, const char * dest){
 
